@@ -23,6 +23,10 @@ app.use('/api/ratings', ratingRoutes)
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/users', userRoutes);
 
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Backend is working!' });
+});
+
 
 
 const port = process.env.PORT || 5000
