@@ -1,11 +1,1 @@
-here if the connection is not working while checking the api in postman these are the steps to follow 
-1. first click on the header tab and check for the content type is in json/application if not add 
-2. in the lost u see a json icon click on it manually insert the data if for register you insert data like 
-{
-  "name": "Sanjay",
-  "email": "admin@example.com",
-  "password": "123456",
-  "is_admin": true
-}
- into it 
-3. then click on the send then you will receive the ouput in the body 
+
