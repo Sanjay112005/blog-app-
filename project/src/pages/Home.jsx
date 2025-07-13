@@ -15,7 +15,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/posts');
+      const response = await fetch('https://blog-d8hj.onrender.com/api/posts');
       if (response.ok) {
         const data = await response.json();
         setPosts(data);
