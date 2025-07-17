@@ -13,7 +13,11 @@ const app = express()
 const dotenv = require('dotenv')
 dotenv.config()
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: "https://blog-front-wbcg.onrender.com", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 
 app.use('/api/auth', authRoutes)
