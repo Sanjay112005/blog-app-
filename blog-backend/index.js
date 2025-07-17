@@ -14,9 +14,14 @@ const dotenv = require('dotenv')
 dotenv.config()
 app.use(express.json())
 app.use(cors({
-  origin: "https://blog-front-wbcg.onrender.com", 
+  origin: function (origin, callback) {
+    if (!origin || origin.includes(".onrender.com")) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS error: Not allowed"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
 }));
 
 
