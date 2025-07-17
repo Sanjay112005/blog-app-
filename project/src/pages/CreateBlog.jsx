@@ -14,6 +14,7 @@ const CreateBlog = () => {
     tags: ''
   });
   const [loading, setLoading] = useState(false);
+  
   const [error, setError] = useState('');
 
   const handleInputChange = (e) => {

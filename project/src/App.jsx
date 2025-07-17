@@ -18,6 +18,7 @@ import ModerateComments from './pages/admin/ModerateComments';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
+import About from './pages/About';
 
 function App() {
   return (
@@ -27,10 +28,10 @@ function App() {
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path= "/about" element={<About/>} />
               <Route path="/blog/:id" element={<BlogDetail />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              
+              <Route path="/register" element={<Register />} /> 
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />
