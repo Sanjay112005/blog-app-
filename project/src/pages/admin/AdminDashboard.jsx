@@ -10,6 +10,7 @@ const AdminDashboard = () => {
     recentActivity: []
   });
   const [loading, setLoading] = useState(true);
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchStats();
@@ -19,17 +20,17 @@ const AdminDashboard = () => {
   const fetchStats = async () => {
     try {
      const [usersRes, postsRes, commentsRes] = await Promise.all([
-  fetch("http://localhost:5000/api/users", {
+  fetch(`${API_BASE}/users`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }),
-  fetch("http://localhost:5000/api/posts", {
+  fetch(`${API_BASE}/posts`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }),
-  fetch("http://localhost:5000/api/comments", {
+  fetch(`${API_BASE}/comments`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

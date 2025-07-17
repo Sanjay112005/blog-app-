@@ -26,21 +26,22 @@ const BlogDetail = () => {
 }
 const { user, token } = useAuth(); // ✅ Include token
 
-  const navigate = useNavigate();
-  const [post, setPost] = useState(null);
+const navigate = useNavigate();
+const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [rating, setRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
   const [newComment, setNewComment] = useState('');
   const [loading, setLoading] = useState(true);
+  const API_BASE = import.meta.env.VITE_API_URL;
 
 
   const incrementViews = async () => {
 
-  try {
-    await fetch(`http://localhost:5000/api/posts/${id}/view`, {
-      method: 'POST',
-    });
+    try {
+      await fetch(`${API_BASE}/posts/${id}/view`, {
+        method: 'POST',
+      });
   } catch (error) {
     console.error('Error incrementing post views:', error);
   }
@@ -72,7 +73,7 @@ useEffect(() => {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/${id}`);
+      const response = await fetch(`${API_BASE}/posts/${id}`);
       if (response.ok) {
         const data = await response.json();
         setPost(data);
@@ -84,7 +85,7 @@ useEffect(() => {
 
   const fetchComments = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/comments/${id}`);
+      const response = await fetch(`${API_BASE}/comments/${id}`);
       if (response.ok) {
         const data = await response.json();
         setComments(data);
@@ -98,7 +99,7 @@ useEffect(() => {
 
   const fetchUserRating = async () => {
     try {
-       const response = await fetch(`http://localhost:5000/api/ratings/${id}`, {
+       const response = await fetch(`${API_BASE}/ratings/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -121,7 +122,7 @@ useEffect(() => {
     if (!user) return;
     
     try {
-      const response = await fetch('http://localhost:5000/api/ratings', {
+      const response = await fetch(`${API_BASE}/ratings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +152,7 @@ useEffect(() => {
     if (!user || !newComment.trim()) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/comments', {
+      const response = await fetch(`${API_BASE}/comments`, {
         method: 'POST',
         headers: {
   'Content-Type': 'application/json',
@@ -178,7 +179,7 @@ useEffect(() => {
   const handleDeletePost = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+        const response = await fetch(`${API_BASE}/posts/${id}`, {
           method: 'DELETE',
             headers: {
     'Authorization': `Bearer ${token}`,

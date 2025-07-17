@@ -6,6 +6,7 @@ const ManagePosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchPosts();
@@ -13,7 +14,7 @@ const ManagePosts = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/posts');
+      const response = await fetch(`${API_BASE}/posts`);
       if (response.ok) {
         const data = await response.json();
         setPosts(data);
@@ -29,7 +30,7 @@ const ManagePosts = () => {
     if (window.confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
       const token = localStorage.getItem("token");
       try {
-        const response = await fetch(`http://localhost:5000/api/posts/${postId}`, {
+        const response = await fetch(`${API_BASE}/posts/${postId}`, {
           method: 'DELETE',
           headers: {
              'Authorization': `Bearer ${token}`,

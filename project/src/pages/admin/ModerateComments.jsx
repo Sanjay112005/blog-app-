@@ -6,6 +6,7 @@ const ModerateComments = () => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchComments();
@@ -15,7 +16,7 @@ const ModerateComments = () => {
     const token = localStorage.getItem("token");
     try {
       // In a real app, this would be a dedicated admin endpoint
-     const response = await fetch('http://localhost:5000/api/comments', {
+     const response = await fetch(`${API_BASE}/comments`, {
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"
@@ -36,7 +37,7 @@ const ModerateComments = () => {
     if (window.confirm('Are you sure you want to delete this comment? This action cannot be undone.')) {
       const token = localStorage.getItem("token");
       try {
-        const response = await fetch(`http://localhost:5000/api/comments/${commentId}`, {
+        const response = await fetch(`${API_BASE}/comments/${commentId}`, {
           method: 'DELETE',
           headers :{
             "authorization": `Bearer ${token}`,

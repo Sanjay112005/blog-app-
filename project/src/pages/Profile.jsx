@@ -19,6 +19,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -72,7 +73,7 @@ const Profile = () => {
         updateData.newPassword = formData.newPassword;
       }
 
-      const response = await fetch(`http://localhost:5000/api/users/${user.id}`, {
+      const response = await fetch(`${API_BASE}/users/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

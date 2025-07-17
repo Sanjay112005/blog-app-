@@ -16,6 +16,7 @@ const EditBlog = () => {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState('');
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchPost();
@@ -23,7 +24,7 @@ const EditBlog = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/${id}`,{
+      const response = await fetch(`${API_BASE}/posts/${id}`,{
           headers: {
           'Authorization': `Bearer ${token}`,
   },
@@ -79,7 +80,7 @@ const EditBlog = () => {
         ? formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag)
         : [];
 
-      const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+      const response = await fetch(`${API_BASE}/posts/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

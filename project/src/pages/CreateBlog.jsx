@@ -16,6 +16,7 @@ const CreateBlog = () => {
   const [loading, setLoading] = useState(false);
   
   const [error, setError] = useState('');
+    const API_BASE = import.meta.env.VITE_API_URL;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +42,7 @@ const CreateBlog = () => {
         ? formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag)
         : [];
 
-      const response = await fetch('http://localhost:5000/api/posts', {
+      const response = await fetch(`${API_BASE}/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

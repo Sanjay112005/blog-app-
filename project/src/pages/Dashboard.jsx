@@ -12,6 +12,7 @@ const Dashboard = () => {
     totalViews: 0,
     totalComments: 0
   });
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchUserPosts();
@@ -21,7 +22,7 @@ const fetchUserPosts = async () => {
 
   try {
     const token = localStorage.getItem('token'); // ⬅️ get token
-    const response = await fetch(`http://localhost:5000/api/posts/user/${user.id}`, {
+    const response = await fetch(`${API_BASE}/posts/user/${user.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -51,7 +52,7 @@ const fetchUserPosts = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
         const token = localStorage.getItem('token'); // ✅ include token
-        const response = await fetch(`http://localhost:5000/api/posts/${postId}`, {
+        const response = await fetch(`${API_BASE}/posts/${postId}`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`,

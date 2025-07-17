@@ -5,6 +5,7 @@ const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchUsers();
@@ -13,7 +14,7 @@ const ManageUsers = () => {
   const fetchUsers = async () => {
     try {
  const token = localStorage.getItem("token");
-const response = await fetch('http://localhost:5000/api/users', {
+const response = await fetch(`${API_BASE}/users`, {
   headers: {
     "Authorization": `Bearer ${token}`,
     "Content-Type": "application/json"
@@ -35,7 +36,7 @@ const handleDeleteUser = async (userId) => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+      const response = await fetch(`${API_BASE}/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -59,7 +60,7 @@ const handleDeleteUser = async (userId) => {
   const toggleAdminStatus = async (user) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:5000/api/users/toggle-admin`, {
+    const response = await fetch(`${API_BASE}/users/toggle-admin`, {
       method: 'PATCH',
       headers: {
         "Authorization": `Bearer ${token}`,

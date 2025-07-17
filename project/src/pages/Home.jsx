@@ -10,6 +10,7 @@ const Home = () => {
   const [selectedTag, setSelectedTag] = useState('');
   const [allTags, setAllTags] = useState([]);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchPosts();
@@ -17,7 +18,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('https://blog-d8hj.onrender.com/api/posts');
+      const response = await fetch(`${API_BASE}/api/posts`);
       if (response.ok) {
         const data = await response.json();
         setPosts(data);
