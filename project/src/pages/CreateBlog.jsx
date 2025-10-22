@@ -67,6 +67,7 @@ if (newPost && newPost.id) {
   setError('Failed to create post. Please try again.');
 }
 
+
 } 
     } catch (error) {
       console.error('Error creating post:', error);
